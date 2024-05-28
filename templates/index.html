@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Light Control Dashboard</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+<h1>Light Control Dashboard</h1>
+
+<div>
+    <h2>Control Light</h2>
+    <label for="room-input">Room:</label>
+    <input type="text" id="room-input" placeholder="Enter room name">
+
+    <label for="state-dropdown">State:</label>
+    <select id="state-dropdown">
+        <option value="on">On</option>
+        <option value="off">Off</option>
+    </select>
+
+    <button id="control-button">Control Light</button>
+    <p id="status-message"></p>
+</div>
+
+<div>
+    <h2>Schedule Lighting</h2>
+    <label for="room-input-schedule">Room:</label>
+    <input type="text" id="room-input-schedule" placeholder="Enter room name for schedule">
+
+    <label for="time-input">Time:</label>
+    <input type="time" id="time-input">
+
+    <label for="state-dropdown-schedule">State:</label>
+    <select id="state-dropdown-schedule">
+        <option value="on">On</option>
+        <option value="off">Off</option>
+    </select>
+
+    <button id="submit-schedule">Schedule Light</button>
+    <p id="success-message"></p>
+</div>
+
+<script>
+$(document).ready(function() {
+    $('#control-button').click(function() {
+        var room = $('#room-input').val().replace('_', ' ');
+        var state = $('#state-dropdown').val();
+        $('#status-message').text('Light in ' + room + ' is ' + state);
+    });
+
+    $('#submit-schedule').click(function() {
+        var room = $('#room-input-schedule').val().replace('_', ' ');
+        var time = $('#time-input').val();
+        var state = $('#state-dropdown-schedule').val();
+        $('#success-message').text('Scheduled ' + state + ' for ' + room + ' at ' + time);
+    });
+});
+</script>
+
+</body>
+</html>
