@@ -32,19 +32,20 @@ def test_control_light_on(driver):
     #det förväntade värdet. Om inte den gör det så misslyckas testet.
 
 def test_control_light_off(driver):
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "room-input")))
-    room_input = driver.find_element(By.ID, "room-input")
-    room_input.clear()
-    room_input.send_keys("living room")
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "room-input"))) #väntar upp till 10s på att villkoret
+    #uppfylls innan skriptet fortsätter
+    room_input = driver.find_element(By.ID, "room-input") #hämtar element från sidan med ID "room-input"
+    room_input.clear() #rensar ev befintlig text från textfältet.
+    room_input.send_keys("living room") #simulerar en användare som skriver in texten "living room" i textfältet
 
     state_dropdown = driver.find_element(By.ID, "state-dropdown")
-    state_dropdown.send_keys("off")
+    state_dropdown.send_keys("off") #väljer alternativet "off" från dropdown menyn
 
-    control_button = driver.find_element(By.ID, "control-button")
-    control_button.click()
+    control_button = driver.find_element(By.ID, "control-button") #hämtar element "control-button" (knapp på webbsidan)
+    control_button.click() #utför en musklickning på knappen
     
     status_message = WebDriverWait(driver, 10).until(
-        EC.presence_of_element_located((By.ID, "status-message"))
+        EC.presence_of_element_located((By.ID, "status-message")) #säkerställer att status-message elementet finns på websidan   
     ).text
 
-    assert "Light in living room is off" in status_message
+    assert "Light in living room is off" in status_message #kontrollerar att den hämtade texten innehåller "Light in living room is off"
