@@ -42,7 +42,7 @@ def test_control_light_off(driver):
     state_dropdown.send_keys("off") #väljer alternativet "off" från dropdown menyn
 
     control_button = driver.find_element(By.ID, "control-button") #hämtar element "control-button" (knapp på webbsidan)
-    control_button.click() #utför en musklickning på knappen
+    control_button.click() #klickar på knappen
     
     status_message = WebDriverWait(driver, 10).until(
         EC.presence_of_element_located((By.ID, "status-message")) #säkerställer att status-message elementet finns på websidan   
